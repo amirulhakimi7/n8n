@@ -1,14 +1,10 @@
-FROM n8nio/n8n:latest
-
-# Set the working directory
-WORKDIR /home/node
+FROM docker.n8n.io/n8nio/n8n:latest
 
 # Expose the port n8n runs on
 EXPOSE 5678
 
-# Set environment variables (these can be overridden by Render)
+# Set environment variables
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=5678
 
-# Use the correct entrypoint that comes with the n8n image
-CMD ["tini", "--", "/usr/local/bin/docker-entrypoint.sh", "n8n"]
+# Use the default startup from the official image
