@@ -1,10 +1,7 @@
 FROM n8nio/n8n:latest
 
 # Set the working directory
-WORKDIR /data
-
-# Copy any custom configurations if needed
-# COPY ./config /data/config
+WORKDIR /home/node
 
 # Expose the port n8n runs on
 EXPOSE 5678
@@ -13,5 +10,5 @@ EXPOSE 5678
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=5678
 
-# Start n8n
-CMD ["n8n", "start"]
+# Use the correct entrypoint that comes with the n8n image
+CMD ["tini", "--", "/usr/local/bin/docker-entrypoint.sh", "n8n"]
